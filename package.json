@@ -1,0 +1,25 @@
+{
+  "name": "tree-hugger",
+  "version": "1.0.0",
+  "description": "Squeeze delicious metadata from a tree of JSON and YAML files.",
+  "main": "index.js",
+  "repository": "https://github.com/zeke/tree-hugger",
+  "author": "Zeke Sikelianos <zeke@sikelianos.com>",
+  "license": "MIT",
+  "dependencies": {
+    "chokidar": "^1.7.0",
+    "js-yaml": "^3.8.4",
+    "lodash": "^4.17.4",
+    "require-yml": "^1.3.1"
+  },
+  "devDependencies": {
+    "@types/chokidar": "^1.6.0",
+    "chai": "^3.5.0",
+    "mocha": "^3.4.2",
+    "standard": "^10.0.2",
+    "standard-markdown": "^2.3.0"
+  },
+  "scripts": {
+    "test": "mocha && standard && standard-markdown"
+  }
+}

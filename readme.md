@@ -1,6 +1,6 @@
 # tree-hugger 
 
-Squeeze delicious metadata from a tree of JSON and YAML files.
+Squeeze delicious metadata from a tree of JSON, YAML, and Markdown files.
 
 ## Installation
 
@@ -18,26 +18,19 @@ yarn add tree-hugger
 
 ## Usage
 
-Say you have a tree of JSON and YAML files:
+Say you have a tree of data files:
 
 ```
 ❯ tree test/fixtures 
 test/fixtures
 ├── apps.json
 ├── authors.yml
-├── awesome_electron.json
-├── featured.apps.json
-├── locale.yml
-├── meetups.yml
+├── party.md
 ├── processes.yaml
 ├── releases.json
 ├── userland
 │   ├── dependencies.json
 │   ├── dev_dependencies.json
-│   ├── github_contributors.json
-│   ├── most_downloaded_packages.json
-│   ├── package_authors.json
-│   ├── package_dependencies.json
 │   └── starred_apps.json
 └── versions.json
 ```

@@ -23,9 +23,21 @@ describe('tree-hugger', function () {
     expect(data.apps).to.be.an('array')
   })
 
-  it('parses YML (and YAML) ', () => {
+  it('parses YML (and YAML)', () => {
     expect(data.processes).to.be.an('object')
     expect(data.meetups).to.be.an('array')
+  })
+
+  it('parses Markdown with frontmatter', () => {
+    expect(data.webtorrent).to.be.an('object')
+    expect(data.webtorrent.data.title).to.be.a('string')
+    expect(data.webtorrent.content).to.be.a('string')
+  })
+
+  it('parses Markdown without frontmatter', () => {
+    expect(data.simple_markdown).to.be.an('object')
+    expect(data.simple_markdown.data).to.deep.equal({})
+    expect(data.simple_markdown.content).to.be.a('string')
   })
 
   it('ignores .DS_Store macOS directories', () => {

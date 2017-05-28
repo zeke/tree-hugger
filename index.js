@@ -38,6 +38,6 @@ class Crawler extends Emitter {
   }
 }
 
-module.exports = function watch (dir) {
-  return new Crawler(dir)
+module.exports = function hug (dir, options = {}) {
+  return new Crawler(dir, options)
 }

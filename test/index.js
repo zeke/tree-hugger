@@ -5,7 +5,7 @@ const fixtureDir = path.join(__dirname, 'fixtures')
 const hug = require('..')
 
 describe('tree-hugger', function () {
-  this.timeout(400) // keep it fast
+  this.timeout(1000) // keep it fast
   let data
 
   before((done) => {

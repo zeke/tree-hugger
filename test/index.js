@@ -40,6 +40,17 @@ describe('tree-hugger', function () {
     expect(data.simple_markdown.content).to.be.a('string')
   })
 
+  it('supports chokidar options', (done) => {
+    const options = {
+      ignored: '**/*.md'
+    }
+    hug(fixtureDir, options).on('data', (_data) => {
+      expect(_data.meetups).to.be.an('array')
+      expect(_data.simple_markdown).to.deep.eq(undefined)
+      done()
+    })
+  })
+
   it('ignores .DS_Store macOS directories', () => {
     expect(Object.keys(data)).to.not.include('DS_Store')
     expect(Object.keys(data)).to.not.include('.DS_Store')

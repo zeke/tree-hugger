@@ -1,6 +1,6 @@
 # tree-hugger 
 
-Squeeze delicious metadata from a tree of JSON, YAML, and Markdown files.
+🌳 Squeeze metadata from a tree of JSON, YAML, and Markdown files.
 
 ## Installation
 

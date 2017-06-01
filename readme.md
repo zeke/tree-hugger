@@ -50,6 +50,27 @@ hug(dataDir)
   })
 ```
 
+You can use all of the options supported by the 
+[chokidar](https://github.com/paulmillr/chokidar#api) file watcher. 
+
+Here's an example that ignores certain paths using chokidar's 
+[anymatch](https://github.com/es128/anymatch#usage) pattern support:
+
+```js
+const options = {
+  ignored: [
+    '**/*.md', 
+    '**/*.json'
+    (filename) => filename.includes('.html')
+  ]
+}
+
+hug(dataDir, options)
+  .on('data', (data) => {
+    console.log(data)
+  })
+```
+
 tree-hugger will emit the `data` event when it finishes scanning the tree,
 then it will _continue watching_ the tree, emitting the `data` event
 any time a file is added, changed, or removed.

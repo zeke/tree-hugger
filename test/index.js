@@ -40,17 +40,6 @@ describe('tree-hugger', function () {
     expect(data.simple_markdown.content).to.be.a('string')
   })
 
-  it('supports chokidar options', (done) => {
-    const options = {
-      ignored: '**/*.md'
-    }
-    hug(fixtureDir, options).on('data', (_data) => {
-      expect(_data.meetups).to.be.an('array')
-      expect(_data.simple_markdown).to.deep.eq(undefined)
-      done()
-    })
-  })
-
   it('ignores .DS_Store macOS directories', () => {
     expect(Object.keys(data)).to.not.include('DS_Store')
     expect(Object.keys(data)).to.not.include('.DS_Store')
@@ -67,5 +56,42 @@ describe('tree-hugger', function () {
 
   it('preserves dots in filenames', () => {
     expect(data.featured.apps).to.be.an('array')
+  })
+
+  describe('chokidar options', () => {
+    it('supports ignored string', (done) => {
+      const options = {
+        ignored: '**/*.md'
+      }
+      hug(fixtureDir, options).on('data', (_data) => {
+        expect(_data.meetups).to.be.an('array')
+        expect(_data.simple_markdown).to.deep.eq(undefined)
+        done()
+      })
+    })
+
+    it('supports ignored array', (done) => {
+      const options = {
+        ignored: ['**/*.md', '**/*.json']
+      }
+      hug(fixtureDir, options).on('data', (_data) => {
+        expect(_data.meetups).to.be.an('array')
+        expect(_data.awesome_electron).to.deep.eq(undefined)
+        expect(_data.simple_markdown).to.deep.eq(undefined)
+        done()
+      })
+    })
+
+    it('supports ignored function', (done) => {
+      const options = {
+        ignored: (filename) => filename.includes('.md')
+      }
+
+      hug(fixtureDir, options).on('data', (_data) => {
+        expect(_data.meetups).to.be.an('array')
+        expect(_data.simple_markdown).to.deep.eq(undefined)
+        done()
+      })
+    })
   })
 })

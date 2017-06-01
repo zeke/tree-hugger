@@ -59,8 +59,8 @@ Here's an example that ignores certain paths using chokidar's
 ```js
 const options = {
   ignored: [
-    '**/*.md', 
-    '**/*.json'
+    '**/*.md',
+    '**/*.json',
     (filename) => filename.includes('.html')
   ]
 }

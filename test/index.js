@@ -28,18 +28,6 @@ describe('tree-hugger', function () {
     expect(data.meetups).to.be.an('array')
   })
 
-  it('parses Markdown with frontmatter', () => {
-    expect(data.webtorrent).to.be.an('object')
-    expect(data.webtorrent.data.title).to.be.a('string')
-    expect(data.webtorrent.content).to.be.a('string')
-  })
-
-  it('parses Markdown without frontmatter', () => {
-    expect(data.simple_markdown).to.be.an('object')
-    expect(data.simple_markdown.data).to.deep.equal({})
-    expect(data.simple_markdown.content).to.be.a('string')
-  })
-
   it('ignores .DS_Store macOS directories', () => {
     expect(Object.keys(data)).to.not.include('DS_Store')
     expect(Object.keys(data)).to.not.include('.DS_Store')
@@ -56,6 +44,34 @@ describe('tree-hugger', function () {
 
   it('preserves dots in filenames', () => {
     expect(data.featured.apps).to.be.an('array')
+  })
+
+  describe('Markdown', () => {
+    it('parses Markdown with frontmatter', () => {
+      expect(data.webtorrent).to.be.an('object')
+      expect(data.webtorrent.data.title).to.be.a('string')
+      expect(data.webtorrent.content).to.be.a('string')
+    })
+
+    it('parses Markdown without frontmatter', () => {
+      expect(data.simple_markdown).to.be.an('object')
+      expect(data.simple_markdown.data).to.deep.equal({})
+      expect(data.simple_markdown.content).to.be.a('string')
+    })
+  })
+
+  describe('HTML', () => {
+    it('parses HTML with frontmatter', () => {
+      expect(data.html_with_frontmatter).to.be.an('object')
+      expect(data.html_with_frontmatter.data.title).to.eq('Blog')
+      expect(data.html_with_frontmatter.content).to.be.a('string')
+    })
+
+    it('parses HTML without frontmatter', () => {
+      expect(data.html_without_frontmatter).to.be.an('object')
+      expect(data.html_without_frontmatter.data).to.deep.equal({})
+      expect(data.html_without_frontmatter.content).to.be.a('string')
+    })
   })
 
   describe('chokidar options', () => {

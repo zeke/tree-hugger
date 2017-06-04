@@ -4,11 +4,11 @@ const Emitter = require('events')
 const File = require('./lib/file')
 
 class Crawler extends Emitter {
-  constructor (tree, options = {}) {
+  constructor (paths, options = {}) {
     super()
-    this.tree = tree
+    this.paths = paths
     this.data = {}
-    this.watcher = chokidar.watch(tree, options)
+    this.watcher = chokidar.watch(paths, options)
       .on('add', this.addFile)
       .on('change', this.addFile)
       .on('unlink', this.removeFile)
@@ -21,7 +21,7 @@ class Crawler extends Emitter {
   }
 
   addFile (filename) {
-    const file = new File(filename, this.crawler.tree)
+    const file = new File(filename, this.crawler.paths)
     if (file.data) {
       set(this.crawler.data, file.key, file.data)
       this.crawler.emit('add', file)
@@ -29,7 +29,7 @@ class Crawler extends Emitter {
   }
 
   removeFile (filename) {
-    const file = new File(filename, this.crawler.tree)
+    const file = new File(filename, this.crawler.paths)
     unset(this.crawler.data, file.key)
   }
 

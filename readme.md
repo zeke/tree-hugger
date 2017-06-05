@@ -65,7 +65,7 @@ Here's an example that ignores certain paths:
 ```js
 const options = {
   ignored: [
-    '**/.git/**'
+    '**/.git/**',
     '**/node_modules/**',
     '**/*.md',
     'ignore_me.yml',
@@ -107,14 +107,14 @@ Assuming the file above was named `/posts/webtorrent.md`, the following data str
 would be generated:
 
 ```js
-posts: {
-  webtorrent: {
-    data: {
-      title: 'Project of the Week: WebTorrent',
-      author: 'zeke'.
-      permalink: '/blog/webtorrent'
-    },
-    content: 'Here is the actual content of the post...'
+{
+  posts: {
+    webtorrent: {
+      data: {
+        title: 'Project of the Week WebTorrent'
+      },
+      content: 'Here is the actual content of the post...'
+    }
   }
 }
 ```
@@ -132,7 +132,8 @@ I am lonely markdown.
 becomes
 
 ```js
-lonely: {
+{
+  lonely: {
     data: {},
     content: 'I am lonely markdown.'
   }

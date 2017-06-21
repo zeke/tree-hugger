@@ -17,11 +17,15 @@ class Crawler extends Emitter {
     // save reference to parent crawler for use in event handlers,
     // where `this` is the chokidar watcher instance
     this.watcher.crawler = this
+
+    // Allow custom processing of files
+    this.watcher.onFileData = options.onFileData
+
     return this
   }
 
   addFile (filename) {
-    const file = new File(filename, this.crawler.paths)
+    const file = new File(filename, this.crawler.paths, this.onFileData)
     if (file.data) {
       set(this.crawler.data, file.key, file.data)
       this.crawler.emit('add', file)

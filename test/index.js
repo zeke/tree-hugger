@@ -76,6 +76,26 @@ describe('tree-hugger', function () {
     })
   })
 
+  describe('`onFileData` option for custom data processing', () => {
+    it('allows a custom middleware function', (done) => {
+      const options = {
+        onFileData: function (data) {
+          if (!data || !data.content) return data
+          return Object.assign({}, data, {
+            content: data.content.replace(/WebTorrent/gm, 'PRODUCT_NAME')
+          })
+        }
+      }
+      hug(fixtureDirA, options).on('data', (data) => {
+        expect(data.webtorrent).to.be.an('object')
+        expect(data.webtorrent.data.title).to.be.a('string')
+        expect(data.webtorrent.content).to.include('What is PRODUCT_NAME?')
+        expect(data.webtorrent.content).to.include('see a demo of PRODUCT_NAME')
+        done()
+      })
+    })
+  })
+
   describe('chokidar options', () => {
     it('supports ignored string', (done) => {
       const options = {

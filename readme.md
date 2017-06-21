@@ -140,6 +140,29 @@ becomes
 }
 ```
 
+### `onFileData` Middleware
+
+You can specify a custom function to modify data files as they're added.
+This function accepts a `data` object and should return a modified `data` object.
+
+```js
+const options = {
+  onFileData: function (data) {
+    // return object untouched
+    if (!data.title) return data
+
+    // remove all exclamation points!!!
+    return Object.assign({}, data, {
+      title: data.title.replace(/!/gm, '')
+    })
+  }
+}
+
+hug(dataDir, options)
+  .on('data', (data) => {
+    console.log(data)
+  })
+```
 
 ## API
 
@@ -147,6 +170,7 @@ becomes
 
 - `dir` String (required) - the full path of the directory to watch
 - `options` Object (optional) - options to pass to the underlying [chokidar](https://github.com/paulmillr/chokidar) file watcher.
+  - `onFileData` Function (optional) - a custom function that can be used to modify datafiles. See [`onFileData` middleware](#onfiledata-middleware).
 
 ## Tests
 

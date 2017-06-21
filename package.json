@@ -17,7 +17,7 @@
     "chai": "^3.5.0",
     "mocha": "^3.4.2",
     "standard": "^10.0.2",
-    "standard-markdown": "^2.3.0"
+    "standard-markdown": "^4.0.1"
   },
   "scripts": {
     "test": "mocha && standard && standard-markdown"
